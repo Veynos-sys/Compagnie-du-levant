@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Une lettre de la Compagnie du Levant</title>
+<meta name="description" content="Une lettre scellée du Couchant vous attend.">
+<meta property="og:title" content="Une lettre pour vous">
+<meta property="og:description" content="Scellée du Couchant. À n'ouvrir que si vous n'avez jamais eu de terre à vous.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#6B1E28">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg stroke='%23D4B06A' stroke-width='7' stroke-linecap='round' fill='none'%3E%3Cpath d='M12 64H88'/%3E%3Cpath d='M30 64A20 20 0 0 1 70 64Z' fill='%23D4B06A'/%3E%3Cpath d='M50 32V20M73 41l7-7M27 41l-7-7'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Herr+Von+Muellerhoff&family=IM+Fell+English:ital@0;1&family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nuit-haut:#11142A; --nuit:#1C2140; --crepuscule:#3B3453; --braise:#6A4B58;
+  --mer:#0E1022; --papier:#E2D9C4; --encre:#2B211B;
+  --cire:#6B1E28; --cire-vive:#822834; --or:#D4B06A; --or-pale:#EBD7A6;
+  --clair:#DCD8E6; --doux:#A9A6BD;
+  --ancien:"IM Fell English","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --texte:"Spectral",Georgia,"Times New Roman",serif;
+  --plume:"Herr Von Muellerhoff","Brush Script MT",cursive;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--mer);color:var(--clair);font-family:var(--texte);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+
+/* ---------- Le ciel et l'horizon ---------- */
+.ciel{position:relative;height:100vh;height:100svh;min-height:540px;overflow:hidden;
+  background:linear-gradient(to bottom,var(--nuit-haut) 0%,var(--nuit) 42%,var(--crepuscule) 68%,var(--braise) 78%)}
+.etoiles{position:absolute;top:0;left:0;width:2px;height:2px;border-radius:50%;transition:opacity 2.8s ease;
+  box-shadow:6vw 8vh 0 0 rgba(255,255,255,.5),14vw 22vh 0 0 rgba(255,255,255,.3),23vw 6vh 0 0 rgba(255,255,255,.45),
+  31vw 17vh 0 0 rgba(255,255,255,.25),39vw 4vh 0 0 rgba(255,255,255,.55),47vw 12vh 0 0 rgba(255,255,255,.3),
+  58vw 7vh 0 0 rgba(255,255,255,.45),66vw 20vh 0 0 rgba(255,255,255,.3),74vw 10vh 0 0 rgba(255,255,255,.5),
+  83vw 5vh 0 0 rgba(255,255,255,.35),91vw 15vh 0 0 rgba(255,255,255,.45),11vw 38vh 0 0 rgba(255,255,255,.2),
+  28vw 33vh 0 0 rgba(255,255,255,.25),62vw 31vh 0 0 rgba(255,255,255,.2),79vw 36vh 0 0 rgba(255,255,255,.22),
+  95vw 30vh 0 0 rgba(255,255,255,.3),52vw 25vh 0 0 rgba(255,255,255,.28),3vw 27vh 0 0 rgba(255,255,255,.35)}
+.aube{position:absolute;inset:0;opacity:.3;transition:opacity 2.8s ease;
+  background:radial-gradient(ellipse 75% 42% at 50% 78%,rgba(233,166,96,.42),rgba(233,166,96,0) 70%)}
+.soleil{position:absolute;left:50%;top:78%;width:clamp(170px,30vw,270px);aspect-ratio:1;border-radius:50%;z-index:1;
+  transform:translate(-50%,-40%);transition:transform 2.8s cubic-bezier(.2,.6,.2,1);
+  background:radial-gradient(circle,#F3CD83 0 33%,rgba(243,205,131,.5) 41%,rgba(232,168,92,.18) 57%,rgba(232,168,92,0) 72%)}
+.mer{position:absolute;left:0;right:0;top:78%;bottom:0;z-index:2;
+  background:linear-gradient(#1B1C36,var(--mer) 60%);border-top:1px solid rgba(240,200,130,.4)}
+.mer::before{content:"";position:absolute;left:50%;top:0;width:clamp(60px,10vw,110px);height:70%;transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,rgba(240,200,130,.3) 0 2px,transparent 2px 7px);
+  -webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent);opacity:.35;transition:opacity 2.8s ease}
+.rabat-ouvert .soleil{transform:translate(-50%,-76%)}
+.rabat-ouvert .aube{opacity:1}
+.rabat-ouvert .mer::before{opacity:1}
+.rabat-ouvert .etoiles{opacity:.35}
+
+/* ---------- L'enveloppe ---------- */
+.scene{position:absolute;left:0;right:0;top:0;bottom:22%;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+.enveloppe{position:relative;width:min(84vw,440px);aspect-ratio:8/5;perspective:1100px;
+  filter:drop-shadow(0 18px 26px rgba(4,5,14,.55));transition:opacity .6s ease,transform .6s ease}
+.env-fond{position:absolute;inset:0;background:#BFB397;border-radius:3px}
+.env-feuille{position:absolute;left:6%;right:6%;top:5%;height:88%;z-index:1;background:var(--papier);
+  transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.env-feuille::before{content:"";position:absolute;inset:16% 12% 30%;
+  background:repeating-linear-gradient(to bottom,rgba(43,33,27,.22) 0 1px,transparent 1px 12px)}
+.env-poche,.rabat{position:absolute;inset:0}
+.env-poche{z-index:2}
+.env-poche svg,.rabat svg{width:100%;height:100%;display:block}
+.adresse{position:absolute;left:0;right:0;bottom:8%;z-index:3;margin:0;padding:0 14%;text-align:center;
+  font-family:var(--ancien);font-style:italic;color:#5B4A38;font-size:clamp(.8rem,2.4vw,1rem);line-height:1.3}
+.rabat{z-index:4;transform-origin:50% 0;transition:transform .65s cubic-bezier(.4,.1,.3,1),z-index 0s linear .33s}
+.rabat-ouvert .rabat{transform:rotateX(180deg);z-index:0}
+.lettre-sortie .env-feuille{transform:translateY(-62%)}
+.ouvert .enveloppe{opacity:0;transform:translateY(24px) scale(.97)}
+.ouvert .scene{pointer-events:none}
+
+/* ---------- Le sceau ---------- */
+.sceau{position:absolute;left:50%;top:58%;width:clamp(64px,18vw,88px);aspect-ratio:1;z-index:5;
+  transform:translate(-50%,-50%);border:0;padding:0;background:none;cursor:pointer;border-radius:50%;
+  filter:drop-shadow(0 3px 3px rgba(20,4,8,.45));transition:transform .25s ease}
+.sceau:hover{transform:translate(-50%,-50%) scale(1.05)}
+.sceau:focus-visible{outline:3px solid var(--or);outline-offset:6px}
+.sceau::before{content:"";position:absolute;inset:4%;border-radius:50%;pointer-events:none;animation:pouls 2.8s ease-out infinite}
+@keyframes pouls{0%{box-shadow:0 0 0 0 rgba(212,176,106,.45)}100%{box-shadow:0 0 0 18px rgba(212,176,106,0)}}
+.moitie{position:absolute;inset:0;transition:transform .75s cubic-bezier(.3,.6,.35,1),opacity .45s ease .3s}
+.moitie svg{width:100%;height:100%;display:block}
+.moitie-g{clip-path:polygon(0 0,52% 0,47% 22%,55% 40%,46% 58%,53% 78%,48% 100%,0 100%)}
+.moitie-d{clip-path:polygon(52% 0,100% 0,100% 100%,48% 100%,53% 78%,46% 58%,55% 40%,47% 22%)}
+.brise .sceau{pointer-events:none}
+.brise .sceau::before{animation:none}
+.brise .moitie-g{transform:translate(-16px,30px) rotate(-24deg);opacity:0}
+.brise .moitie-d{transform:translate(16px,34px) rotate(20deg);opacity:0}
+.consigne{margin:28px 0 0;font-family:var(--ancien);font-style:italic;color:#D8C9A5;
+  font-size:clamp(1rem,.9rem + .5vw,1.22rem);text-align:center;transition:opacity .4s ease}
+.brise .consigne{opacity:0}
+
+/* ---------- Contenu révélé ---------- */
+#contenu{display:none}
+.ouvert #contenu{display:block;animation:apparition .9s ease both}
+@keyframes apparition{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ---------- La lettre ---------- */
+.lettre-zone{padding:clamp(56px,10vw,120px) 14px clamp(40px,6vw,68px)}
+.lettre{max-width:820px;margin:0 auto;border-radius:2px;outline:none;scroll-margin-top:36px;
+  padding:clamp(30px,6.5vw,70px) clamp(22px,6.5vw,72px) clamp(34px,6vw,64px);
+  color:var(--encre);font-family:var(--ancien);font-size:clamp(1.08rem,1rem + .45vw,1.26rem);line-height:1.72;
+  background-color:var(--papier);
+  background-image:
+    radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(110,80,40,.22) 100%),
+    linear-gradient(to bottom,rgba(0,0,0,0) calc(33.3% - 1px),rgba(70,50,30,.14) calc(33.3% - 1px),rgba(70,50,30,.14) 33.3%,rgba(255,255,255,.35) 33.3%,rgba(255,255,255,.35) calc(33.3% + 1px),rgba(0,0,0,0) calc(33.3% + 1px)),
+    linear-gradient(to bottom,rgba(0,0,0,0) calc(66.6% - 1px),rgba(70,50,30,.14) calc(66.6% - 1px),rgba(70,50,30,.14) 66.6%,rgba(255,255,255,.35) 66.6%,rgba(255,255,255,.35) calc(66.6% + 1px),rgba(0,0,0,0) calc(66.6% + 1px)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .32 0 0 0 0 .24 0 0 0 0 .16 0 0 0 .12 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 28px 60px rgba(0,0,0,.55),0 4px 10px rgba(0,0,0,.3)}
+.lettre p{margin:0 0 .7em;text-indent:1.4em;-webkit-hyphens:auto;hyphens:auto}
+.lettre .salut{text-indent:0;font-style:italic;margin-bottom:1.3em}
+.lettre .question{text-indent:0;margin-top:1.5em;font-size:1.14em}
+.signature{margin-top:1.6em;text-align:right}
+.signature .nom{display:block;font-family:var(--plume);font-size:clamp(2.7rem,2rem + 2.6vw,3.5rem);line-height:.95;color:#2A1D16}
+.signature .titre{display:block;margin-top:.3em;font-style:italic;font-size:.92em}
+
+/* ---------- Appel vers Discord ---------- */
+.appel{text-align:center;padding:8px 16px clamp(56px,9vw,96px)}
+.bouton{display:inline-block;font-family:var(--ancien);font-size:clamp(1.1rem,1rem + .4vw,1.28rem);color:#F3DFAA;
+  background:var(--cire);border:1px solid var(--or);border-radius:3px;padding:.75em 1.6em;text-decoration:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 24px rgba(0,0,0,.4);transition:background .2s ease}
+.bouton:hover{background:var(--cire-vive)}
+.bouton:focus-visible,.lien-secondaire:focus-visible{outline:3px solid var(--or);outline-offset:5px}
+.lien-secondaire{display:table;margin:20px auto 0;color:var(--doux);font-style:italic;text-underline-offset:4px}
+.lien-secondaire:hover{color:var(--clair)}
+
+/* ---------- Le dossier ---------- */
+.ornement{display:block;width:56px;height:auto;margin:0 auto clamp(28px,5vw,44px);opacity:.75}
+.dossier{max-width:42rem;margin:0 auto;padding:0 22px clamp(72px,10vw,120px);font-size:clamp(1rem,.96rem + .2vw,1.1rem);line-height:1.78;scroll-margin-top:24px}
+.dossier h2{font-family:var(--ancien);font-weight:400;color:var(--or-pale);font-size:clamp(2rem,1.4rem + 2.4vw,2.9rem);line-height:1.1;margin:0 0 .35em;text-align:center}
+.dossier .chapeau{text-align:center;color:var(--doux);font-style:italic;margin:0 auto 2.6em;max-width:34em}
+.dossier h3{font-family:var(--ancien);font-weight:400;color:var(--or);font-size:clamp(1.35rem,1.15rem + .8vw,1.65rem);line-height:1.25;margin:2.2em 0 .6em}
+.dossier p{margin:0 0 1.05em}
+.dossier .envoi{margin-top:2.4em;font-family:var(--ancien);font-style:italic;font-size:1.18em;line-height:1.6;color:var(--or-pale);text-align:center}
+.dossier .appel{padding:1.4em 0 0}
+
+/* ---------- Termes et définitions ---------- */
+.terme{cursor:pointer;border-radius:2px;-webkit-hyphens:none;hyphens:none;
+  text-decoration:underline dotted rgba(107,30,40,.6);text-decoration-thickness:1.5px;text-underline-offset:.2em;
+  transition:background .15s ease,color .15s ease}
+.terme:hover,.terme[aria-expanded="true"]{color:var(--cire);background:rgba(107,30,40,.07)}
+.terme:focus-visible{outline:2px solid var(--cire);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){.terme{cursor:help}}
+.bulle{position:absolute;left:0;top:0;z-index:20;width:min(340px,calc(100vw - 24px));padding:16px 18px 14px;
+  background:#1C2140;color:var(--clair);border:1px solid rgba(212,176,106,.55);border-radius:4px;
+  box-shadow:0 14px 34px rgba(5,6,15,.45);font-family:var(--texte);font-size:.95rem;line-height:1.6;
+  opacity:0;visibility:hidden;transform:translateY(4px);
+  transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s}
+.bulle.visible{opacity:1;visibility:visible;transform:none;transition:opacity .16s ease,transform .16s ease,visibility 0s}
+.bulle-titre{margin:0 0 .35em;font-family:var(--ancien);font-size:1.2rem;line-height:1.2;color:var(--or-pale)}
+.bulle-corps p{margin:0 0 .5em}
+.bulle-corps p:last-child{margin-bottom:0}
+.bulle-corps .noms{font-style:italic;color:var(--or-pale)}
+.bulle-corps svg{display:block;width:72px;height:auto;margin:.2em 0 .6em}
+.bulle-fermer{display:none}
+.bulle.panneau{position:fixed;left:50%;top:auto;bottom:0;width:min(100%,560px);border-bottom:0;border-radius:12px 12px 0 0;
+  padding:20px 22px calc(18px + env(safe-area-inset-bottom,0px));font-size:1rem;box-shadow:0 -12px 34px rgba(5,6,15,.5);
+  transform:translate(-50%,100%);transition:transform .25s ease,opacity .2s ease,visibility 0s linear .25s}
+.bulle.panneau.visible{transform:translate(-50%,0);transition:transform .25s ease,opacity .2s ease,visibility 0s}
+.bulle.panneau .bulle-fermer{display:block;margin:14px 0 0 auto;padding:.45em 1.1em;background:none;cursor:pointer;
+  border:1px solid rgba(212,176,106,.5);border-radius:3px;color:var(--or-pale);font-family:var(--texte);font-size:.95rem}
+.bulle-fermer:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+<noscript><style>#contenu{display:block}.scene{display:none}</style></noscript>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="cire" cx="38%" cy="32%" r="75%">
+      <stop offset="0" stop-color="#9A3440"/>
+      <stop offset=".55" stop-color="#6B1E28"/>
+      <stop offset="1" stop-color="#43101A"/>
+    </radialGradient>
+    <symbol id="sceau-motif" viewBox="0 0 100 100">
+      <path fill="url(#cire)" d="M50.0 5.0C55.6 5.2 61.2 7.7 66.6 9.8C72.1 11.9 78.5 13.6 82.5 17.5C86.5 21.4 89.0 27.7 90.7 33.2C92.3 38.6 92.3 44.3 92.5 50.0C92.7 55.7 93.6 61.9 92.0 67.4C90.5 73.0 87.4 79.4 83.2 83.2C79.0 87.1 72.4 89.0 66.8 90.7C61.3 92.3 55.7 92.8 50.0 93.0C44.3 93.2 38.3 93.3 32.8 91.6C27.3 89.9 20.9 87.0 17.1 82.9C13.3 78.7 11.7 72.1 9.8 66.6C7.9 61.2 5.9 55.7 5.5 50.0C5.1 44.3 5.1 37.4 7.5 32.4C9.9 27.4 15.5 23.7 19.7 19.7C24.0 15.8 27.8 11.1 32.9 8.6C37.9 6.2 44.4 4.8 50.0 5.0Z"/>
+      <circle cx="50" cy="50" r="32" fill="none" stroke="#A4414C" stroke-width="1.2" transform="translate(.8 .8)" opacity=".6"/>
+      <circle cx="50" cy="50" r="32" fill="none" stroke="#3E0E16" stroke-width="2"/>
+      <g stroke-linecap="round" stroke-width="3">
+        <g stroke="#A4414C" fill="none" transform="translate(.9 .9)" opacity=".7">
+          <path d="M26 58H74"/>
+          <path d="M38 58A12 12 0 0 1 62 58Z" fill="#A4414C"/>
+          <path d="M50 40V34M59 42.4L62 37.2M41 42.4L38 37.2M65.6 49L70.8 46M34.4 49L29.2 46"/>
+        </g>
+        <g stroke="#3E0E16" fill="none">
+          <path d="M26 58H74"/>
+          <path d="M38 58A12 12 0 0 1 62 58Z" fill="#3E0E16"/>
+          <path d="M50 40V34M59 42.4L62 37.2M41 42.4L38 37.2M65.6 49L70.8 46M34.4 49L29.2 46"/>
+        </g>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="ciel">
+  <div class="etoiles" aria-hidden="true"></div>
+  <div class="aube" aria-hidden="true"></div>
+  <div class="soleil" aria-hidden="true"></div>
+  <div class="mer" aria-hidden="true"></div>
+
+  <div class="scene">
+    <div class="enveloppe">
+      <div class="env-fond" aria-hidden="true"></div>
+      <div class="env-feuille" aria-hidden="true"></div>
+      <div class="env-poche" aria-hidden="true">
+        <svg viewBox="0 0 160 100" preserveAspectRatio="none">
+          <path d="M0 0L80 52L0 100Z" fill="#D5CAB1"/>
+          <path d="M160 0L80 52L160 100Z" fill="#D8CDB5"/>
+          <path d="M0 100L80 50L160 100Z" fill="#DED4BE"/>
+          <path d="M0 100L80 50L160 100" fill="none" stroke="rgba(90,70,45,.25)" stroke-width=".5"/>
+        </svg>
+      </div>
+      <p class="adresse">À celles et ceux qui n’ont jamais eu de terre à eux</p>
+      <div class="rabat" aria-hidden="true">
+        <svg viewBox="0 0 160 100" preserveAspectRatio="none">
+          <path d="M0 0H160L80 58Z" fill="#CFC4A9"/>
+          <path d="M0 0L80 58L160 0" fill="none" stroke="rgba(90,70,45,.3)" stroke-width=".6"/>
+        </svg>
+      </div>
+      <button class="sceau" id="sceau" type="button" aria-label="Briser le sceau et ouvrir la lettre">
+        <span class="moitie moitie-g"><svg viewBox="0 0 100 100"><use href="#sceau-motif"/></svg></span>
+        <span class="moitie moitie-d"><svg viewBox="0 0 100 100"><use href="#sceau-motif"/></svg></span>
+      </button>
+    </div>
+    <p class="consigne">Brisez le sceau pour ouvrir la lettre</p>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <div class="lettre-zone">
+    <article class="lettre" id="lettre" tabindex="-1" aria-label="Lettre d’Halvar Ordan">
+      <p class="salut">À celles et ceux qui n’ont jamais eu de terre à&nbsp;eux,</p>
+
+      <p>Vous ne me connaissez pas. Je m’appelle Halvar Ordan, et je descends d’une famille qui a gardé pendant trois siècles la ferveur d’un peuple qui s’éteint.</p>
+
+      <p>On vous a tous enseigné la même histoire dans les temples&nbsp;: les <span class="terme" data-terme="heros">héros de l’Âge ancien</span> ont abattu les <span class="terme" data-terme="dieux-maudits">dieux maudits</span>, le continent a été sauvé et la <span class="terme" data-terme="paix">Paix des Sceaux</span> est née. On vous a moins parlé du prix. La dernière bataille s’est livrée à l’Ouest, sur les terres d’<span class="terme" data-terme="ysmer">Ysmer</span>. Quand la poussière est retombée, il ne restait d’Ysmer que des cendres et un peuple sur les routes. Nos ancêtres ont trouvé refuge à <span class="terme" data-terme="valdorne">Valdorne</span> et à <span class="terme" data-terme="alderan">Alderan</span>. On les a accueillis, mais on ne les a jamais vraiment reçus.</p>
+
+      <p>Trois cents ans plus tard, nous sommes toujours «&nbsp;<span class="terme" data-terme="ouest">ceux de l’Ouest</span>&nbsp;». Nous avons appris les métiers, les langues et les prières des autres, mais dans chaque famille ysmérienne, on trace encore le <span class="terme" data-terme="couchant">Couchant</span>&nbsp;: un demi-soleil posé sur une ligne d’horizon. On le brode sur les langes des nouveau-nés, on le grave sur les tombes. Il dit d’où nous venons, et que notre jour est tombé.</p>
+
+      <p>Pourtant, le même dessin peut se lire autrement&nbsp;: comme un soleil qui se lève.</p>
+
+      <p>Aujourd’hui, les <span class="terme" data-terme="navires">navires d’Aube</span> traversent le ciel vers l’Est, et au-delà de la mer s’étend <span class="terme" data-terme="terre-est">une terre que personne n’a encore su nommer</span>. Les couronnes y envoient leurs soldats, les <span class="terme" data-terme="compagnies">compagnies</span> y envoient leurs prospecteurs, et tous ne parlent que d’<span class="terme" data-terme="irisite">irisite</span>. Nous y allons pour autre chose&nbsp;: bâtir. D’abord un village, avec un feu, une forge et des murs. Puis une ville, si <span class="terme" data-terme="dieux-restants">les dieux qui nous restent</span> le veulent bien. Un lieu où personne ne sera l’invité de personne, et où nos enfants apprendront à lire le Couchant dans l’autre sens.</p>
+
+      <p>J’ai obtenu une <span class="terme" data-terme="charte">charte de concession</span>. Je ne vous cacherai pas qu’elle m’a coûté cher, ni que certains attendront un jour d’être remboursés. Un navire nous attend, mais il lui manque des bras.</p>
+
+      <p>Je ne vous promets pas la fortune. Je vous promets une terre vierge, des nuits froides, des bêtes qu’aucun bestiaire ne décrit, des ruines que personne ne sait expliquer, et la certitude que tout ce que vous construirez portera votre marque. Certains d’entre nous ne reviendront pas. Ceux qui resteront seront des fondateurs.</p>
+
+      <p>Je ne vous demande pas d’avoir tous du sang d’Ysmer. Je cherche des lames, des mains habiles, des esprits curieux, des gens qui fuient quelque chose et des gens qui cherchent quelque chose. Si vous n’avez jamais eu de place à vous, ou si celle qu’on vous a faite est trop étroite, cette lettre est pour vous.</p>
+
+      <p>Présentez-la sur les quais au dernier jour du mois. Elle vaut passage.</p>
+
+      <p>Nous partirons avec ou sans vous, mais je préférerais avec vous.</p>
+
+      <p class="question">Alors, dites-moi&nbsp;: serez-vous de la partie&nbsp;?</p>
+
+      <div class="signature">
+        <span class="nom">Halvar Ordan</span>
+        <span class="titre"><span class="terme" data-terme="intendant">Intendant</span> de la <span class="terme" data-terme="levant">Compagnie du Levant</span></span>
+      </div>
+    </article>
+  </div>
+
+  <div class="appel">
+    <a class="bouton" data-discord href="#" target="_blank" rel="noopener">Rejoindre l’expédition sur Discord</a>
+    <a class="lien-secondaire" href="#dossier">Lire d’abord le dossier de l’expédition</a>
+  </div>
+
+  <svg class="ornement" viewBox="0 0 100 60" aria-hidden="true">
+    <g stroke="#D4B06A" stroke-width="3" stroke-linecap="round" fill="none">
+      <path d="M6 44H94"/>
+      <path d="M36 44A14 14 0 0 1 64 44Z" fill="#D4B06A"/>
+      <path d="M50 22V14M65 28l5-5M35 28l-5-5M74 38l6-3M26 38l-6-3"/>
+    </g>
+  </svg>
+
+  <section class="dossier" id="dossier" aria-labelledby="titre-dossier">
+    <h2 id="titre-dossier">Le dossier de l’expédition</h2>
+    <p class="chapeau">Ce que vos personnages savent du monde, et ce que vous devez savoir de la campagne.</p>
+
+    <h3>Le monde, trois siècles plus tard</h3>
+    <p>Trois cents ans ont passé depuis le Scellement des derniers dieux maudits, l’exploit à partir duquel le continent compte les années. Les héros de cette époque sont morts depuis longtemps. Il reste d’eux des statues patinées, des chroniques que peu de gens lisent encore, quelques objets devenus reliques et une légende que chacun raconte à sa façon.</p>
+    <p>Estoria a connu depuis une longue période de calme, appelée la Paix des Sceaux. Le Dernier Flambeau, un ordre autrefois secret, est devenu une institution puissante chargée de garder les Sceaux des dieux maudits et les reliques trop dangereuses. La foi, elle, ne s’est jamais remise de la Révélation&nbsp;: on sait depuis trois siècles que les anciens textes religieux étaient faux. Les croyants restent divisés entre ceux qui vénèrent, ceux qui veulent purifier et ceux qui renient.</p>
+    <p>C’est l’irisite qui a changé la donne. Ce cristal stocke l’énergie magique et alimente l’éclairage des villes, les forges runiques et surtout le Moteur d’Aube, une invention récente qui reproduit à grande échelle la propulsion des anciens navires volants à cristaux. Mais l’irisite se consume&nbsp;: chaque cristal s’éteint à l’usage et finit en pierre grise sans valeur. Un seul navire d’Aube en brûle des caisses entières à chaque traversée. La demande a explosé, et les gisements du continent, exploités depuis des siècles, ne suivent plus.</p>
+    <p>Puis les navires volants ont trouvé la route de l’Est. Au-delà de la mer s’étend une terre nouvelle, riche en irisite et presque entièrement inexplorée. Depuis, c’est la ruée. Alderan et Valdorne s’y disputent les meilleures terres, les compagnies marchandes à charte y financent comptoirs et concessions, et derrière elles arrivent prospecteurs, mercenaires, missionnaires et aventuriers de tout poil.</p>
+
+    <h3>Les gens de l’Ouest</h3>
+    <p>Peu de gens s’en souviennent, mais Estoria comptait autrefois un troisième royaume. Ysmer, à l’ouest du continent, a accueilli la dernière grande bataille de l’Âge des Héros et n’y a pas survécu. Sa population s’est dispersée à Valdorne et à Alderan. Ses descendants y vivent depuis trois siècles, intégrés en apparence mais toujours un peu étrangers. Beaucoup de familles gardent encore le Couchant, un demi-soleil posé sur une ligne d’horizon, brodé sur un vêtement ou gravé au-dessus d’une porte, en souvenir du royaume perdu.</p>
+    <p>C’est un Ysmérien, Halvar Ordan, qui a monté l’expédition que vous allez rejoindre&nbsp;: la Compagnie du Levant. Son but n’est pas l’irisite. Il veut fonder un village, puis peut-être une ville, sur ces terres nouvelles. Il en sera le chef au début. Ce que deviendra ce village dépendra ensuite de vous.</p>
+
+    <h3>Vos personnages</h3>
+    <p>Vous n’avez pas besoin d’être d’origine ysmérienne. Chacun rejoint l’expédition pour ses propres raisons&nbsp;: faire fortune, fuir quelque chose, retrouver quelqu’un, prêcher, servir une couronne en secret, ouvrir un commerce, cartographier l’inconnu ou simplement voir ce qu’il y a au-delà de l’horizon.</p>
+    <p>La seule vraie exigence, c’est d’arriver avec un objectif personnel concret que votre personnage peut poursuivre sur ce nouveau continent. C’est lui qui vous fera avancer, car personne ne vous prendra par la main.</p>
+
+    <h3>Comment va se dérouler la campagne</h3>
+    <p>Ce ne sera pas une campagne classique avec un seul groupe et une histoire tracée d’avance. La table est ouverte&nbsp;: il n’y a pas de nombre fixe de joueurs, et chacun pourra rejoindre la campagne en cours de route ou s’en retirer, comme les colons qui débarquent ou repartent au fil des navires. Vous serez tous habitants du même village, et vous ne jouerez pas toujours avec les mêmes personnes. Les groupes se feront et se déferont selon les envies, les objectifs et les disponibilités de chacun.</p>
+    <p>Si le format vous paraît ambitieux, rassurez-vous&nbsp;: il a déjà fait ses preuves. C’est une variante de ce qu’on appelle une campagne «&nbsp;West Marches&nbsp;», imaginée par Ben Robbins à la fin des années 2000 et reprise depuis par de nombreuses tables, dont beaucoup s’organisent justement sur Discord.</p>
+    <p>Il n’y a pas d’intrigue principale imposée. Ce qui fera avancer l’histoire, ce sont vos ambitions, les besoins du village et ce continent que vous découvrirez région par région. Des menaces apparaîtront avec le temps, et il faudra parfois s’unir pour y faire face.</p>
+    <p>Plusieurs formats de séance vont coexister. Il y aura des missions courtes d’1h30 à 2h, à deux ou trois joueurs, choisies sur le tableau de quêtes de l’auberge. Il y aura des expéditions plus importantes, parfois partagées entre plusieurs groupes qui travaillent chacun sur une partie d’un même projet (l’un part chercher la pierre, l’autre de quoi allumer la forge). Et il y aura de temps en temps des one-shots dont les conséquences retomberont sur le village.</p>
+    <p>Tout ce que vous faites compte. Chaque séance laisse une trace dans le journal du village, lisible par tous&nbsp;: vous y verrez ce que les autres ont accompli, ce qui a changé et ce qui menace. Le village grandira, ou non, selon vos actions. Certains y prendront des responsabilités et deviendront marchands, soldats ou conseillers. D’autres préféreront l’horizon.</p>
+
+    <h3>En pratique</h3>
+    <p>Tout passera par un serveur Discord&nbsp;: c’est là que s’afficheront les quêtes de l’auberge et que s’organiseront les séances. Les parties pourront se jouer à distance sur Forge, une table de jeu virtuelle très pratique, et en personne chaque fois que ce sera possible.</p>
+    <p>Un site web, en cours de création, servira de mémoire au village. On y trouvera la présentation de chaque personnage et ce que l’on sait de lui, l’état du village et les commodités disponibles sur place, les marchands de passage, et tout ce qui évoluera au fil des séances.</p>
+
+    <p class="envoi">Vous êtes des pionniers. Ce que vous bâtirez, découvrirez et déciderez façonnera ce coin du monde, et tous les joueurs en verront les effets.</p>
+
+    <div class="appel">
+      <a class="bouton" data-discord href="#" target="_blank" rel="noopener">Rejoindre l’expédition sur Discord</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Définitions affichées au survol (ordinateur) ou au toucher (téléphone). Pour modifier un texte, change simplement le paragraphe correspondant. -->
+<div id="definitions" hidden>
+  <div data-terme="ysmer" data-titre="Ysmer"><p>Ancien royaume de l’ouest d’Estoria, rayé de la carte il y a trois siècles lors de la dernière bataille contre les dieux maudits. Il n’en reste que des ruines et des terres désolées. Ses descendants vivent aujourd’hui dispersés à Valdorne et à Alderan.</p></div>
+  <div data-terme="ouest" data-titre="Ceux de l’Ouest"><p>Surnom, parfois méprisant, donné aux descendants des réfugiés d’Ysmer.</p></div>
+  <div data-terme="valdorne" data-titre="Valdorne"><p>L’un des deux grands royaumes d’Estoria. Longtemps affaibli par les guerres de l’Âge des Héros, il dispute aujourd’hui à Alderan les terres de l’Est.</p></div>
+  <div data-terme="alderan" data-titre="Alderan"><p>L’autre grand royaume, le plus puissant du continent. C’est dans sa capitale que les héros ont été accueillis en triomphe après le premier Scellement.</p></div>
+  <div data-terme="heros" data-titre="Les héros de l’Âge ancien"><p>Le groupe légendaire qui a affronté et scellé les dieux maudits il y a trois siècles. Leurs statues se dressent encore dans plusieurs villes.</p><p class="noms">Les chroniques retiennent leurs noms&nbsp;: Alister, Ludivine, Ea, Rafael et Gilzik.</p></div>
+  <div data-terme="dieux-maudits" data-titre="Les dieux maudits"><p>Divinités maléfiques qui ont menacé Estoria à l’Âge des Héros, avant d’être enfermées sous des Sceaux.</p></div>
+  <div data-terme="paix" data-titre="La Paix des Sceaux"><p>Les trois siècles de calme relatif qui ont suivi le scellement des dieux maudits, sous la garde du Dernier Flambeau.</p></div>
+  <div data-terme="couchant" data-titre="Le Couchant"><svg viewBox="0 0 100 60" aria-hidden="true"><g stroke="#D4B06A" stroke-width="3" stroke-linecap="round" fill="none"><path d="M6 44H94"/><path d="M36 44A14 14 0 0 1 64 44Z" fill="#D4B06A"/><path d="M50 22V14M65 28l5-5M35 28l-5-5M74 38l6-3M26 38l-6-3"/></g></svg><p>Le symbole que les familles ysmériennes se transmettent depuis la chute du royaume.</p></div>
+  <div data-terme="navires" data-titre="Les navires d’Aube"><p>Navires volants propulsés par un Moteur d’Aube et alimentés à l’irisite. Ce sont eux qui ont ouvert la route de l’Est.</p></div>
+  <div data-terme="terre-est" data-titre="La terre de l’Est"><p>Continent découvert au-delà de la mer orientale, riche en irisite et en grande majorité inexploré, vers lequel se précipitent royaumes et compagnies.</p></div>
+  <div data-terme="compagnies" data-titre="Les compagnies"><p>Compagnies marchandes à charte qui financent les expéditions vers l’Est en échange de concessions. Certaines pèsent presque autant qu’un royaume.</p></div>
+  <div data-terme="irisite" data-titre="L’irisite"><p>Cristal qui stocke l’énergie magique et se consume à l’usage. Il alimente l’éclairage des villes, les forges runiques et les navires d’Aube, et vaut aujourd’hui une fortune.</p></div>
+  <div data-terme="dieux-restants" data-titre="Les dieux qui nous restent"><p>Depuis la Révélation, on sait que les anciens textes sacrés mentaient, et beaucoup doutent des dieux qu’ils prient encore.</p></div>
+  <div data-terme="charte" data-titre="Charte de concession"><p>Acte officiel qui autorise une expédition à s’installer sur un territoire de l’Est et à l’exploiter. Sans elle, on n’est qu’un squatteur, ou un pirate.</p></div>
+  <div data-terme="intendant" data-titre="Intendant"><p>Titre de celui qui administre une expédition. Halvar dirigera le village à sa fondation.</p></div>
+  <div data-terme="levant" data-titre="La Compagnie du Levant"><p>L’expédition montée par Halvar Ordan pour fonder un village sur les terres de l’Est, celle que vous rejoignez.</p></div>
+</div>
+
+<div class="bulle" id="bulle" role="dialog" aria-modal="false" aria-labelledby="bulle-titre" aria-hidden="true">
+  <p class="bulle-titre" id="bulle-titre"></p>
+  <div class="bulle-corps" id="bulle-corps"></div>
+  <button class="bulle-fermer" type="button">Fermer</button>
+</div>
+
+<script>
+  // Remplace cette adresse par le lien d'invitation de ton serveur Discord
+  const DISCORD_URL = "https://discord.gg/VOTRE-INVITATION";
+
+  document.querySelectorAll("[data-discord]").forEach(function (lien) { lien.href = DISCORD_URL; });
+
+  const racine = document.documentElement;
+  const sceau = document.getElementById("sceau");
+  const lettre = document.getElementById("lettre");
+  const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function ouvrir() {
+    if (racine.classList.contains("brise")) return;
+    const t = reduit ? [0, 0, 0, 0] : [0, 380, 950, 1900];
+    racine.classList.add("brise");
+    setTimeout(function () { racine.classList.add("rabat-ouvert"); }, t[1]);
+    setTimeout(function () { racine.classList.add("lettre-sortie"); }, t[2]);
+    setTimeout(function () {
+      racine.classList.add("ouvert");
+      requestAnimationFrame(function () {
+        lettre.scrollIntoView({ behavior: reduit ? "auto" : "smooth", block: "start" });
+        lettre.focus({ preventScroll: true });
+      });
+    }, t[3]);
+  }
+
+  sceau.addEventListener("click", ouvrir);
+  // ---------- Définitions ----------
+  const bulle = document.getElementById("bulle");
+  const bulleTitre = document.getElementById("bulle-titre");
+  const bulleCorps = document.getElementById("bulle-corps");
+  const survol = window.matchMedia("(hover: hover) and (pointer: fine)");
+  let termeActif = null, epingle = false, minuterie = null;
+
+  function modePanneau() { return !survol.matches; }
+
+  function placer(t) {
+    if (modePanneau()) { bulle.style.left = ""; bulle.style.top = ""; return; }
+    const rects = t.getClientRects();
+    const r = rects[rects.length - 1] || t.getBoundingClientRect();
+    const bw = bulle.offsetWidth, bh = bulle.offsetHeight;
+    let left = r.left + r.width / 2 - bw / 2;
+    left = Math.max(12, Math.min(left, document.documentElement.clientWidth - bw - 12));
+    let top = r.bottom + 10;
+    if (top + bh > window.innerHeight - 12 && rects[0].top - bh - 10 > 12) top = rects[0].top - bh - 10;
+    bulle.style.left = (left + window.scrollX) + "px";
+    bulle.style.top = (top + window.scrollY) + "px";
+  }
+
+  function afficher(t) {
+    const def = document.querySelector('#definitions [data-terme="' + t.dataset.terme + '"]');
+    if (!def) return;
+    if (termeActif && termeActif !== t) termeActif.setAttribute("aria-expanded", "false");
+    termeActif = t; epingle = false;
+    bulleTitre.textContent = def.dataset.titre;
+    bulleCorps.innerHTML = def.innerHTML;
+    t.setAttribute("aria-expanded", "true");
+    bulle.classList.toggle("panneau", modePanneau());
+    bulle.setAttribute("aria-hidden", "false");
+    placer(t);
+    bulle.classList.add("visible");
+  }
+
+  function fermer() {
+    clearTimeout(minuterie);
+    if (!termeActif) return;
+    termeActif.setAttribute("aria-expanded", "false");
+    termeActif = null; epingle = false;
+    bulle.classList.remove("visible");
+    bulle.setAttribute("aria-hidden", "true");
+  }
+
+  function planifierFermeture() { clearTimeout(minuterie); minuterie = setTimeout(fermer, 140); }
+
+  function basculer(t) {
+    if (termeActif === t && (epingle || modePanneau())) { fermer(); return; }
+    afficher(t);
+    epingle = true;
+  }
+
+  document.querySelectorAll(".terme").forEach(function (t) {
+    t.setAttribute("role", "button");
+    t.setAttribute("tabindex", "0");
+    t.setAttribute("aria-expanded", "false");
+    t.setAttribute("aria-controls", "bulle");
+    t.addEventListener("mouseenter", function () { if (modePanneau() || epingle) return; clearTimeout(minuterie); afficher(t); });
+    t.addEventListener("mouseleave", function () { if (modePanneau() || epingle) return; planifierFermeture(); });
+    t.addEventListener("click", function (e) { e.stopPropagation(); basculer(t); });
+    t.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); basculer(t); } });
+  });
+
+  bulle.addEventListener("mouseenter", function () { clearTimeout(minuterie); });
+  bulle.addEventListener("mouseleave", function () { if (!epingle && !modePanneau()) planifierFermeture(); });
+  bulle.addEventListener("click", function (e) { e.stopPropagation(); });
+  bulle.querySelector(".bulle-fermer").addEventListener("click", function () { const t = termeActif; fermer(); if (t) t.focus(); });
+  document.addEventListener("click", fermer);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && termeActif) { const t = termeActif; fermer(); t.focus(); }
+  });
+  window.addEventListener("resize", function () { if (termeActif) placer(termeActif); });
+  if (survol.addEventListener) survol.addEventListener("change", fermer);
+</script>
+</body>
+</html>
